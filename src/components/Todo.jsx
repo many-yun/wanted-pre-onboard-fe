@@ -116,58 +116,6 @@ const Todo = () => {
       deleteList();
    };
 
-   // complete
-   const [key2, setKey2] = useState('');
-   const [thisValue2, setThisValue2] = useState('');
-   const completed = (e) => {
-      const key = e.target.name;
-      const val = e.target.value;
-      setKey2(key);
-      setThisValue2(val);
-
-      const modiList = () => {
-         return fetch(`https://5co7shqbsf.execute-api.ap-northeast-2.amazonaws.com/production/todos/${key2}`, {
-            method: 'PUT',
-            headers: {
-               authorization: `Bearer ${localArr}`,
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ todo: thisValue2, isCompleted: true }),
-         })
-            .then((res) => res)
-            .then((data) => {
-               console.log(data);
-               getList();
-            });
-      };
-      modiList();
-   };
-   console.log(key2);
-
-   const notCompleted = (e) => {
-      const key = e.target.name;
-      const val = e.target.value;
-      setKey2(key);
-      setThisValue2(val);
-
-      const modiList = () => {
-         return fetch(`https://5co7shqbsf.execute-api.ap-northeast-2.amazonaws.com/production/todos/${key2}`, {
-            method: 'PUT',
-            headers: {
-               authorization: `Bearer ${localArr}`,
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ todo: thisValue2, isCompleted: false }),
-         })
-            .then((res) => res)
-            .then((data) => {
-               console.log(data);
-               getList();
-            });
-      };
-      modiList();
-   };
-
    //목록 출력
    const List = () => {
       return (
@@ -178,10 +126,10 @@ const Todo = () => {
                      <input type="checkbox" name={e.id} value={e.todo} />
                      <span id={e.id}>{e.todo}</span>
                      <div className="ListBtns">
-                        <button type="button" name={e.id} value={e.todo} onClick={editModePopup}>
+                        <button className="BtnEdit" type="button" name={e.id} value={e.todo} onClick={editModePopup}>
                            수정
                         </button>
-                        <button type="button" name={e.id} onClick={delList}>
+                        <button className="BtnDel" type="button" name={e.id} onClick={delList}>
                            삭제
                         </button>
                      </div>
@@ -211,12 +159,14 @@ const Todo = () => {
                <div>
                   <h3>todo 수정</h3>
                   <input onChange={onChange} placeholder={thisValue} value={changeValue} />
-                  <button type="button" value={key} onClick={modifyList}>
-                     완료
-                  </button>
-                  <button type="button" onClick={nonePopup}>
-                     취소
-                  </button>
+                  <div className="ListBtns">
+                     <button className="BtnEdit" type="button" value={key} onClick={modifyList}>
+                        완료
+                     </button>
+                     <button className="BtnDel" type="button" onClick={nonePopup}>
+                        취소
+                     </button>
+                  </div>
                </div>
             </div>
          </div>

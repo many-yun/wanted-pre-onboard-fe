@@ -54,11 +54,22 @@
 .Todo .List > div span {
    margin-right: 10px;
 }
-.Todo .List > div .ListBtns {
+.ListBtns {
    display: inline-block;
 }
-.Todo .List > div .ListBtns button {
+.ListBtns button {
    margin-right: 5px;
+   border: none;
+   padding: 5px 10px;
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.BtnEdit {
+   background-color: rgb(59, 61, 189);
+}
+.BtnDel {
+   background-color: #999;
 }
 
 .ModiPopup {
@@ -84,4 +95,14 @@
    font-size: 1.3rem;
    font-weight: bold;
    margin-bottom: 20px;
+}
+.ModiPopup input {
+   height: 30px;
+   border: 1px solid #ccc;
+   margin-right: 10px;
+}
+.ModiPopup .ListBtns button {
+   line-height: 35px;
+   vertical-align: middle;
+   padding: 0 10px;
 }
