@@ -58,7 +58,7 @@ const Login = () => {
 
    return (
       <div>
-         <div className="Login">
+         <div className="Login Background">
             <div className="Box">
                <h2>로그인</h2>
                <div className="BoxDiv">

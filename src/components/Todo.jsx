@@ -55,36 +55,19 @@ const Todo = () => {
    // 목록 수정
    const [changeValue, setChangeValue] = useState('');
    const [key, setKey] = useState('');
+   const [thisValue, setThisValue] = useState('');
    const [togglePopup, setTogglePopup] = useState('none');
 
-   const [readMode, setReadMode] = useState(0);
-   const [modifyMode, setModifyMode] = useState(1);
-
    const editModePopup = (e) => {
-      const key = e.target.value;
+      const key = e.target.name;
+      const val = e.target.value;
       setKey(key);
-      setTogglePopup('fixed');
+      setThisValue(val);
+      setTogglePopup('flex');
    };
 
    const onChange = (e) => {
       setChangeValue(e.target.value);
-   };
-
-   const ModifyPopup = (e) => {
-      return (
-         <div className="ModiPopup" style={{ display: togglePopup }}>
-            <div>
-               <h3>todo 수정</h3>
-               <input onChange={onChange} value={changeValue} />
-               <button type="button" value={key} onClick={modifyList}>
-                  완료
-               </button>
-               <button type="button" onClick={nonePopup}>
-                  취소
-               </button>
-            </div>
-         </div>
-      );
    };
 
    const modifyList = (e) => {
@@ -97,7 +80,7 @@ const Todo = () => {
                authorization: `Bearer ${localArr}`,
                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ todo: changeValue, isCompleted: true }),
+            body: JSON.stringify({ todo: changeValue, isCompleted: false }),
          })
             .then((res) => res)
             .then((data) => {
@@ -116,7 +99,7 @@ const Todo = () => {
    // 목록 삭제
    const delList = (e) => {
       e.preventDefault();
-      const id = e.target.value;
+      const id = e.target.name;
       const deleteList = () => {
          return fetch(`https://5co7shqbsf.execute-api.ap-northeast-2.amazonaws.com/production/todos/${id}`, {
             method: 'DELETE',
@@ -133,41 +116,75 @@ const Todo = () => {
       deleteList();
    };
 
+   // complete
+   const [key2, setKey2] = useState('');
+   const [thisValue2, setThisValue2] = useState('');
+   const completed = (e) => {
+      const key = e.target.name;
+      const val = e.target.value;
+      setKey2(key);
+      setThisValue2(val);
+
+      const modiList = () => {
+         return fetch(`https://5co7shqbsf.execute-api.ap-northeast-2.amazonaws.com/production/todos/${key2}`, {
+            method: 'PUT',
+            headers: {
+               authorization: `Bearer ${localArr}`,
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ todo: thisValue2, isCompleted: true }),
+         })
+            .then((res) => res)
+            .then((data) => {
+               console.log(data);
+               getList();
+            });
+      };
+      modiList();
+   };
+   console.log(key2);
+
+   const notCompleted = (e) => {
+      const key = e.target.name;
+      const val = e.target.value;
+      setKey2(key);
+      setThisValue2(val);
+
+      const modiList = () => {
+         return fetch(`https://5co7shqbsf.execute-api.ap-northeast-2.amazonaws.com/production/todos/${key2}`, {
+            method: 'PUT',
+            headers: {
+               authorization: `Bearer ${localArr}`,
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ todo: thisValue2, isCompleted: false }),
+         })
+            .then((res) => res)
+            .then((data) => {
+               console.log(data);
+               getList();
+            });
+      };
+      modiList();
+   };
+
    //목록 출력
    const List = () => {
       return (
          <div className="List">
             {allList?.map((e) => {
                return (
-                  <div key={e.id} id={e.id} mode={readMode}>
-                     <span>{e.todo}</span>
+                  <div key={e.id} id={e.id}>
+                     <input type="checkbox" name={e.id} value={e.todo} />
+                     <span id={e.id}>{e.todo}</span>
                      <div className="ListBtns">
-                        <button type="button" value={e.id} onClick={editModePopup}>
+                        <button type="button" name={e.id} value={e.todo} onClick={editModePopup}>
                            수정
                         </button>
-                        <button type="button" value={e.id} onClick={delList}>
+                        <button type="button" name={e.id} onClick={delList}>
                            삭제
                         </button>
                      </div>
-                     {/* {!edited ? (
-                        <div className="ListBtns">
-                           <button type="button" value={e.id} onClick={editModeToggle}>
-                              수정
-                           </button>
-                           <button type="button" value={e.id} onClick={delList}>
-                              삭제
-                           </button>
-                        </div>
-                     ) : (
-                        <div className="ListBtns">
-                           <button type="button" value={e.id}>
-                              완료
-                           </button>
-                           <button type="button" value={e.id} onClick={editModeToggle}>
-                              취소
-                           </button>
-                        </div>
-                     )} */}
                   </div>
                );
             })}
@@ -190,7 +207,18 @@ const Todo = () => {
                   <List />
                </div>
             </div>
-            <ModifyPopup />
+            <div className="ModiPopup" style={{ display: togglePopup }}>
+               <div>
+                  <h3>todo 수정</h3>
+                  <input onChange={onChange} placeholder={thisValue} value={changeValue} />
+                  <button type="button" value={key} onClick={modifyList}>
+                     완료
+                  </button>
+                  <button type="button" onClick={nonePopup}>
+                     취소
+                  </button>
+               </div>
+            </div>
          </div>
       </div>
    ) : (

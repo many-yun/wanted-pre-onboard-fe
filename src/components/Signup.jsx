@@ -60,7 +60,7 @@ const Signup = () => {
 
    return (
       <div>
-         <div className="Signup">
+         <div className="Signup Background">
             <div className="Box">
                <h2>회원가입</h2>
                <h3>이메일</h3>
