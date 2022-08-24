@@ -1,0 +1,81 @@
+.Todo {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100vh;
+}
+.Todo h2 {
+   font-size: 1.5rem;
+   font-weight: bold;
+}
+.TodoList {
+   background-color: white;
+   border-radius: 10px;
+   width: 500px;
+   height: 600px;
+   padding: 50px;
+   box-sizing: border-box;
+   overflow: hidden;
+}
+.Todo .TodoInput,
+.Todo .List {
+}
+.Todo .TodoInput {
+   padding: 20px 0;
+   border-bottom: 2px solid black;
+}
+.Todo .TodoInput input {
+   width: calc(100% - 70px);
+   height: 40px;
+   line-height: 40px;
+   border: 1px solid #ddd;
+}
+.Todo .TodoInput button {
+   width: 60px;
+   height: 44px;
+   line-height: 40px;
+   border: 0;
+   background-color: black;
+   color: white;
+   margin-left: 4px;
+   border-radius: 5px;
+   cursor: pointer;
+   vertical-align: middle;
+}
+.Todo .List {
+   overflow-y: scroll;
+   height: 390px;
+}
+.Todo .List > div {
+   padding: 15px 0;
+   border-bottom: 1px solid #ddd;
+}
+.Todo .List > div span {
+   margin-right: 10px;
+}
+.Todo .List > div .ListBtns {
+   display: inline-block;
+}
+.Todo .List > div .ListBtns button {
+   margin-right: 5px;
+}
+
+.ModiPopup {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.ModiPopup > div {
+   padding: 50px;
+   width: 400px;
+   background-color: white;
+   box-sizing: border-box;
+   border-radius: 10px;
+}

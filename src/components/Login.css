@@ -1,0 +1,25 @@
+.Login {
+   width: 100%;
+   height: 100vh;
+   background-color: rgb(107, 116, 167);
+   display: flex;
+   align-items: center;
+}
+.Box .BoxDiv {
+   width: 100%;
+   text-align: left;
+   margin-bottom: 10px;
+}
+.Box .BoxDiv:first-child {
+   margin-bottom: 0;
+}
+.Box .BoxDiv svg {
+   display: inline-block;
+   color: #aaa;
+   text-align: left;
+   margin-right: 10px;
+}
+.Box .BoxDiv input {
+   width: calc(100% - 41px);
+   display: inline-block;
+}

@@ -1,0 +1,38 @@
+.Main {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100vh;
+   flex-direction: column;
+}
+.Main h1 {
+   display: block;
+   color: white;
+   font-size: 4rem;
+   font-weight: bold;
+   text-align: center;
+   width: 100%;
+   margin-bottom: 50px;
+}
+.Main > div {
+}
+.Main > div a {
+   background-color: white;
+   border-radius: 5px;
+   padding: 20px 0;
+   width: 200px;
+   display: inline-block;
+   text-align: center;
+   font-weight: bold;
+   color: black;
+   font-size: 1rem;
+   transition: 0.2s;
+}
+.Main > div a:first-child {
+   margin-right: 10px;
+}
+.Main > div a:hover {
+   background-color: rgb(59, 61, 189);
+   color: white;
+}

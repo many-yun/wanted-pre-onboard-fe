@@ -1,0 +1,52 @@
+.Signup {
+   width: 100%;
+   height: 100vh;
+   background-color: rgb(107, 116, 167);
+   display: flex;
+   align-items: center;
+}
+.Box {
+   background-color: white;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+   width: 450px;
+   margin: 0 auto;
+   padding: 50px;
+   box-sizing: border-box;
+   border-radius: 10px;
+   text-align: center;
+}
+.Box h2 {
+   font-size: 1.5rem;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+.Box h3 {
+   text-align: left;
+   margin: 25px 0 10px 0;
+   font-weight: bold;
+   font-size: 1.2rem;
+}
+.Box input {
+   width: 100%;
+   height: 40px;
+   line-height: 40px;
+   border: 1px solid #ddd;
+}
+.Box .Alert {
+   margin-top: 10px;
+   text-align: left;
+   font-size: 0.9rem;
+   color: Red;
+}
+.Box button {
+   background-color: rgb(107, 116, 167);
+   color: white;
+   border: none;
+   border-radius: 5px;
+   padding: 10px 25px;
+   font-size: 0.95rem;
+   font-weight: 500;
+   width: 100%;
+   margin-top: 25px;
+   cursor: pointer;
+}
